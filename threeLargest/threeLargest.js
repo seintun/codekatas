@@ -1,5 +1,6 @@
 const array = [141, 1, 17, -7, -17, -27, 18, 541, 8, 7, 7]
 
+// Big O(n) Time, O(1) Space
 function findThreeLargestNumbers(array) {
   const threeLargest = [null, null, null];
   for (const num of array) {
