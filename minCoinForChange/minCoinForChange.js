@@ -9,6 +9,7 @@ Sample input: 7, [1, 5, 10]
 Sample output: 3 (2x1 + 1x5)
  */
 
+//  O(nd) Time and O(n) Space
 function minNumberOfCoinsForChange(n, denoms) {
   // Write your code here.
   const numOfCoins = (new Array(n + 1).fill(Infinity))
