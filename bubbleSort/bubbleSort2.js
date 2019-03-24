@@ -19,7 +19,7 @@ const array = [8, 5, 2, 9, 5, 6, 3];
   }
   console.log(array)
   return array
-})(array) // [ 8, 5, 2, 9, 5, 6, 3 ]
+})(array) // [ 2, 3, 5, 5, 6, 8, 9 ]
 
 function swap(i, j, array) {
   const temp = array[j];
