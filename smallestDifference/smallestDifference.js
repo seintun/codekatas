@@ -10,7 +10,7 @@
 
 const arr1 = [-1, 5, 10, 20, 28, 3]
 const arr2 = [26, 134, 135, 15, 17]
-
+// O(nlog(n) + mlog(m)) Time and O(1) Space
 function smallestDifference(arr1, arr2) {
   arr1.sort((a, b) => a - b);
   arr2.sort((a, b) => a - b);
