@@ -11,6 +11,30 @@
 const arr1 = [-1, 5, 10, 20, 28, 3]
 const arr2 = [26, 134, 135, 15, 17]
 
-(function smallestDifference(arr1, arr2) {
-
-})(arr1, arr2)
+function smallestDifference(arr1, arr2) {
+  arr1.sort((a, b) => a - b);
+  arr2.sort((a, b) => a - b);
+  let idxOne = 0,
+    idxTwo = 0,
+    smallest = Infinity,
+    current = Infinity,
+    smallestPair = [];
+  while (idxOne < arr1.length && idxTwo < arr2.length) {
+    let firstNum = arr1[idxOne],
+        secondNum = arr2[idxTwo];
+    if (firstNum < secondNum) {
+      current = secondNum - firstNum;
+      idxOne++;
+    } else if (secondNum < firstNum) {
+      current = firstNum - secondNum;
+      idxTwo++;
+    } else return [firstNum, secondNum];
+    if (smallest > current) {
+      smallest = current;
+      smallestPair = [firstNum, secondNum];
+    }
+  }
+  console.log(smallestPair);
+  return smallestPair
+}
+smallestDifference(arr1, arr2);
