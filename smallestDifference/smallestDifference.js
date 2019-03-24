@@ -11,17 +11,17 @@
 const arr1 = [-1, 5, 10, 20, 28, 3]
 const arr2 = [26, 134, 135, 15, 17]
 // O(nlog(n) + mlog(m)) Time and O(1) Space
-function smallestDifference(arr1, arr2) {
-  arr1.sort((a, b) => a - b);
-  arr2.sort((a, b) => a - b);
+function smallestDifference(arrayOne, arrayTwo) {
+  arrayOne.sort((a, b) => a - b)
+  arrayTwo.sort((a, b) => a - b)
   let idxOne = 0,
-    idxTwo = 0,
-    smallest = Infinity,
-    current = Infinity,
-    smallestPair = [];
-  while (idxOne < arr1.length && idxTwo < arr2.length) {
-    let firstNum = arr1[idxOne],
-        secondNum = arr2[idxTwo];
+  idxTwo = 0,
+  smallest = Infinity,
+  current = Infinity,
+  smallestPair = [];
+  while (idxOne < arrayOne.length && idxTwo < arrayTwo.length) {
+    let firstNum = 0,
+    secondNum = 0;
     if (firstNum < secondNum) {
       current = secondNum - firstNum;
       idxOne++;
@@ -35,6 +35,6 @@ function smallestDifference(arr1, arr2) {
     }
   }
   console.log(smallestPair);
-  return smallestPair
+  return smallestPair;
 }
 smallestDifference(arr1, arr2);
