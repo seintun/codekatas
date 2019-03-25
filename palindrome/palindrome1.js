@@ -10,3 +10,10 @@ Sample output: True (it is a palindrome)
 function isPalindrome(string) {
   // Write your code here.
 }
+
+console.log("Should print: true, false, true, true, false")
+isPalindrome("abcdcba") // true
+isPalindrome("galvanize") // false
+isPalindrome("No lemon, no melon") // true
+isPalindrome("Red rum, sir, is murder") // true
+isPalindrome("palindrome") // false
