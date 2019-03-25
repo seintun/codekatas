@@ -6,6 +6,7 @@ Sample input:"abaxyzzyxf"
 Sample output:"xyzzyx"
  */
 
+ //  O(n^2) Time and O(1) space
 function longestPalindromicSubstring(string) {
   // Write your code here.
   let currentLongest = [0, 1];
