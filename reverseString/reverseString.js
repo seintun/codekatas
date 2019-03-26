@@ -1,4 +1,16 @@
-function reverse(arrayOfChars) {}
+function reverse(arrayOfChars) {
+  let leftIdx = 0,
+    rightIdx = arrayOfChars.length - 1;
+
+  while (leftIdx < rightIdx) {
+    const temp = arrayOfChars[leftIdx];
+    arrayOfChars[leftIdx] = arrayOfChars[rightIdx];
+    arrayOfChars[rightIdx] = temp;
+
+    leftIdx++;
+    rightIdx--;
+  }
+}
 
 // Tests
 
