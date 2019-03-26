@@ -1,4 +1,26 @@
-function reverseWords(message) {}
+function reverseWords(message) {
+  // Decode the message by reversing the words
+  reverseCharacters(message, 0, message.length - 1);
+  let currentWordInitialIndex = 0;
+  for (let i = 0; i <= message.length; i++) {
+    if (i === message.length || message[i] === " ") {
+      reverseCharacters(message, currentWordInitialIndex, i - 1);
+      currentWordInitialIndex = i + 1;
+    }
+  }
+}
+
+function reverseCharacters(message, leftIndex, rightIndex) {
+  // reversing each character of the word
+  while (leftIndex < rightIndex) {
+    const temp = message[leftIndex];
+    message[leftIndex] = message[rightIndex];
+    message[rightIndex] = temp;
+
+    leftIndex++;
+    rightIndex--;
+  }
+}
 
 // Tests
 
