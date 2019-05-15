@@ -37,9 +37,18 @@ Output
 */
 
 function filterGenrePlayCount(playlist) {
-  // Enter your code Here
-  // Remove the following console.log() & return result
-  console.log(playlist);
+  let result = {};
+  for (const song of playlist) {
+    for (const genre of song.genres) {
+      if (!result[genre]) result[genre] = song;
+      else {
+        if (song.playCount > result[genre].playCount) {
+          result[genre] = song;
+        }
+      }
+    }
+  }
+  console.log(result);
 }
 
 const library = [
