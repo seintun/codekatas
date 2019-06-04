@@ -1,12 +1,10 @@
-const array = [8, 5, 2, 9, 5, 6, 3];
-
 // Optimized moving pointers inwards
 /**
  * Best: O(n) time O(1) Space
  * Avg: O(n^2) time O(1) Space
  * Worst: O(n^2) time O(1) Space
  */
-(function bubbleSort(arr) {
+function bubbleSort(arr) {
   let noSwaps;
   for (let i = arr.length; i > 0; i--) {
     noSwaps = true;
@@ -20,12 +18,13 @@ const array = [8, 5, 2, 9, 5, 6, 3];
     }
     if (noSwaps) break;
   }
-  console.log(arr)
-  return arr
-})(array) // [ 2, 3, 5, 5, 6, 8, 9 ]
+  return arr;
+}
 
 function swap(i, j, array) {
   const temp = array[j];
   array[j] = array[i];
   array[i] = temp;
 }
+
+module.exports = bubbleSort;
