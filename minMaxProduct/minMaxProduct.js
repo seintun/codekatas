@@ -24,6 +24,19 @@
 
 function minMaxProduct(operations, x) {
   // Write your code here
+  const arr = [];
+  const result = [];
+  operations.forEach((operator, i) => {
+    let product = 0;
+    if (operator === "push") arr.push(x[i]);
+    if (operator === "pop") {
+      const popValue = arr.indexOf(x[i]);
+      arr.splice(popValue, 1);
+    }
+    product = Math.max(...arr) * Math.min(...arr);
+    result.push(product);
+  });
+  return result;
 }
 
 module.exports = minMaxProduct;
