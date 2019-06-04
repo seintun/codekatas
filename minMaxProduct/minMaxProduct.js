@@ -24,12 +24,13 @@
 
 function minMaxProduct(operations, x) {
   // Write your code here
-  const arr = [];
-  const result = [];
+  const arr = [],
+    result = [];
   operations.forEach((operator, i) => {
     let product = 0;
     if (operator === "push") arr.push(x[i]);
     if (operator === "pop") {
+      if (arr.length === 0) return [];
       const popValue = arr.indexOf(x[i]);
       arr.splice(popValue, 1);
     }
