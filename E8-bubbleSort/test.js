@@ -1,9 +1,4 @@
-// Add, edit, or remove tests in this file.
-// Treat it as your playground!
-
-const bubbleSort = require("./bubbleSort1");
-// // const bubbleSort = require("./bubbleSort2");
-// const bubbleSort = require("./bubbleSort3");
+const bubbleSort = require("./bubbleSort");
 
 it("Test Case #1", function() {
   expect(bubbleSort([1])).toEqual([1]);
