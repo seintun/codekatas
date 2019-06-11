@@ -3,8 +3,8 @@
 // Sample input: [8, 5, 2, 9, 5, 6, 3]
 // Sample output: [2, 3, 5, 5, 6, 8, 9]
 
-function bubbleSort(array) {
+function insertionSort(array) {
   // Write your code here.
 }
 
-module.exports = bubbleSort;
+module.exports = insertionSort;
