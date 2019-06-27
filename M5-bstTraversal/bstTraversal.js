@@ -31,11 +31,6 @@ function postOrderTraverse(tree, array) {
 }
 
 // Do not edit the lines below.
-exports.inOrderTraverse = inOrderTraverse;
-exports.preOrderTraverse = preOrderTraverse;
-exports.postOrderTraverse = postOrderTraverse;
-
-// Do not edit the lines below.
 module.exports = {
   inOrderTraverse: inOrderTraverse,
   preOrderTraverse: preOrderTraverse,
