@@ -1,167 +1,111 @@
-const getYoungestCommonAncestor = require("./getYoungestCommonAncestor");
+const breadthFirstSearch = require("./breadthFirstSearch");
 
-class AncestralTree {
-  constructor(name) {
-    this.name = name;
-    this.ancestor = null;
-  }
+const test1 = new Node("A");
+test1.addChild("B").addChild("C");
+test1.children[0].addChild("D");
 
-  addAsAncestor(descendants) {
-    for (const descendant of descendants) {
-      descendant.ancestor = this;
-    }
-  }
-}
+const test2 = new Node("A");
+test2
+  .addChild("B")
+  .addChild("C")
+  .addChild("D")
+  .addChild("E");
+test2.children[1].addChild("F");
 
-const ancestralTrees = {};
-const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-for (const letter of ALPHABET) {
-  ancestralTrees[letter] = new AncestralTree(letter);
-}
-ancestralTrees.A.addAsAncestor([
-  ancestralTrees.B,
-  ancestralTrees.C,
-  ancestralTrees.D,
-  ancestralTrees.E,
-  ancestralTrees.F
-]);
-ancestralTrees.B.addAsAncestor([
-  ancestralTrees.G,
-  ancestralTrees.H,
-  ancestralTrees.I
-]);
-ancestralTrees.C.addAsAncestor([ancestralTrees.J]);
-ancestralTrees.D.addAsAncestor([ancestralTrees.K, ancestralTrees.L]);
-ancestralTrees.F.addAsAncestor([ancestralTrees.M, ancestralTrees.N]);
-ancestralTrees.H.addAsAncestor([
-  ancestralTrees.O,
-  ancestralTrees.P,
-  ancestralTrees.Q,
-  ancestralTrees.R
-]);
-ancestralTrees.K.addAsAncestor([ancestralTrees.S]);
-ancestralTrees.P.addAsAncestor([ancestralTrees.T, ancestralTrees.U]);
-ancestralTrees.R.addAsAncestor([ancestralTrees.V]);
-ancestralTrees.V.addAsAncestor([
-  ancestralTrees.W,
-  ancestralTrees.X,
-  ancestralTrees.Y
-]);
-ancestralTrees.X.addAsAncestor([ancestralTrees.Z]);
+const test3 = new Node("A");
+test3.addChild("B");
+test3.children[0].addChild("C");
+test3.children[0].children[0].addChild("D").addChild("E");
+test3.children[0].children[0].children[0].addChild("F");
+
+const test4 = new Node("A");
+test4
+  .addChild("B")
+  .addChild("C")
+  .addChild("D");
+test4.children[0].addChild("E").addChild("F");
+test4.children[2].addChild("G").addChild("H");
+test4.children[0].children[1].addChild("I").addChild("J");
+test4.children[2].children[0].addChild("K");
+
+const test5 = new Node("A");
+test5
+  .addChild("B")
+  .addChild("C")
+  .addChild("D")
+  .addChild("L")
+  .addChild("M");
+test5.children[0]
+  .addChild("E")
+  .addChild("F")
+  .addChild("O");
+test5.children[1].addChild("P");
+test5.children[2].addChild("G").addChild("H");
+test5.children[0].children[0].addChild("Q").addChild("R");
+test5.children[0].children[1].addChild("I").addChild("J");
+test5.children[2].children[0].addChild("K");
+test5.children[4]
+  .addChild("S")
+  .addChild("T")
+  .addChild("U")
+  .addChild("V");
+test5.children[4].children[0].addChild("W").addChild("X");
+test5.children[4].children[0].children[1].addChild("Y").addChild("Z");
 
 it("Test Case #1", function() {
-  const yca = getYoungestCommonAncestor(
-    ancestralTrees.A,
-    ancestralTrees.A,
-    ancestralTrees.B
-  );
-  expect(yca).toEqual(ancestralTrees.A);
+  expect(test1.breadthFirstSearch([])).toEqual(["A", "B", "C", "D"]);
 });
 
 it("Test Case #2", function() {
-  const yca = getYoungestCommonAncestor(
-    ancestralTrees.A,
-    ancestralTrees.B,
-    ancestralTrees.F
-  );
-  expect(yca).toEqual(ancestralTrees.A);
+  expect(test2.breadthFirstSearch([])).toEqual(["A", "B", "C", "D", "E", "F"]);
 });
 
 it("Test Case #3", function() {
-  const yca = getYoungestCommonAncestor(
-    ancestralTrees.A,
-    ancestralTrees.G,
-    ancestralTrees.M
-  );
-  expect(yca).toEqual(ancestralTrees.A);
+  expect(test3.breadthFirstSearch([])).toEqual(["A", "B", "C", "D", "E", "F"]);
 });
 
 it("Test Case #4", function() {
-  const yca = getYoungestCommonAncestor(
-    ancestralTrees.A,
-    ancestralTrees.U,
-    ancestralTrees.S
-  );
-  expect(yca).toEqual(ancestralTrees.A);
+  expect(test4.breadthFirstSearch([])).toEqual([
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K"
+  ]);
 });
 
 it("Test Case #5", function() {
-  const yca = getYoungestCommonAncestor(
-    ancestralTrees.A,
-    ancestralTrees.Z,
-    ancestralTrees.M
-  );
-  expect(yca).toEqual(ancestralTrees.A);
-});
-
-it("Test Case #6", function() {
-  const yca = getYoungestCommonAncestor(
-    ancestralTrees.A,
-    ancestralTrees.O,
-    ancestralTrees.I
-  );
-  expect(yca).toEqual(ancestralTrees.B);
-});
-
-it("Test Case #7", function() {
-  const yca = getYoungestCommonAncestor(
-    ancestralTrees.A,
-    ancestralTrees.T,
-    ancestralTrees.Z
-  );
-  expect(yca).toEqual(ancestralTrees.H);
-});
-
-it("Test Case #8", function() {
-  const yca = getYoungestCommonAncestor(
-    ancestralTrees.A,
-    ancestralTrees.T,
-    ancestralTrees.V
-  );
-  expect(yca).toEqual(ancestralTrees.H);
-});
-
-it("Test Case #9", function() {
-  const yca = getYoungestCommonAncestor(
-    ancestralTrees.A,
-    ancestralTrees.T,
-    ancestralTrees.H
-  );
-  expect(yca).toEqual(ancestralTrees.H);
-});
-
-it("Test Case #10", function() {
-  const yca = getYoungestCommonAncestor(
-    ancestralTrees.A,
-    ancestralTrees.W,
-    ancestralTrees.V
-  );
-  expect(yca).toEqual(ancestralTrees.V);
-});
-
-it("Test Case #11", function() {
-  const yca = getYoungestCommonAncestor(
-    ancestralTrees.A,
-    ancestralTrees.Z,
-    ancestralTrees.B
-  );
-  expect(yca).toEqual(ancestralTrees.B);
-});
-
-it("Test Case #12", function() {
-  const yca = getYoungestCommonAncestor(
-    ancestralTrees.A,
-    ancestralTrees.Q,
-    ancestralTrees.W
-  );
-  expect(yca).toEqual(ancestralTrees.H);
-});
-
-it("Test Case #13", function() {
-  const yca = getYoungestCommonAncestor(
-    ancestralTrees.A,
-    ancestralTrees.A,
-    ancestralTrees.Z
-  );
-  expect(yca).toEqual(ancestralTrees.A);
+  expect(test5.breadthFirstSearch([])).toEqual([
+    "A",
+    "B",
+    "C",
+    "D",
+    "L",
+    "M",
+    "E",
+    "F",
+    "O",
+    "P",
+    "G",
+    "H",
+    "S",
+    "T",
+    "U",
+    "V",
+    "Q",
+    "R",
+    "I",
+    "J",
+    "K",
+    "W",
+    "X",
+    "Y",
+    "Z"
+  ]);
 });
