@@ -1,5 +1,6 @@
 const MinHeap = require("./MinHeap");
-est1 = new MinHeap([2, 3, 1]);
+
+const test1 = new MinHeap([2, 3, 1]);
 
 const test2 = new MinHeap([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
